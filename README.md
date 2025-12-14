@@ -1,1 +1,790 @@
-# Presentation-2
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Generator Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            color: white;
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideInFade 0.6s ease-out;
+        }
+
+        @keyframes slideInFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Slide 1 */
+        .slide-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .slide-1 h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        .slide-1 .subtitle {
+            font-size: 28px;
+            margin-bottom: 80px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        /* Slide 2 */
+        .slide-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        /* Slide 3 */
+        .slide-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Slide 4 */
+        .slide-4 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        /* Slide 5 */
+        .slide-5 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        /* Slide 6 */
+        .slide-6 {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        /* Slide 7 */
+        .slide-7 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+
+        /* Slide 8 */
+        .slide-8 {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+        }
+
+        /* Slide 9 */
+        .slide-9 {
+            background: linear-gradient(135deg, #2e2e7e 0%, #1a1a2e 100%);
+        }
+
+        /* Slide 10 */
+        .slide-10 {
+            background: linear-gradient(135deg, #0f0f23 0%, #16213e 50%, #e94560 100%);
+        }
+
+        h1 {
+            font-size: 56px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            opacity: 0.95;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 40px 60px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: scaleIn 0.6s ease-out 0.3s both;
+        }
+
+        .info-card p {
+            font-size: 20px;
+            margin: 12px 0;
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            font-size: 15px;
+            overflow-x: auto;
+            max-width: 850px;
+            border-left: 4px solid #00BCD4;
+            line-height: 1.8;
+            color: #e0e0e0;
+            animation: slideInLeft 0.7s ease-out;
+        }
+
+        .code-block strong {
+            color: #00BCD4;
+        }
+
+        .feature-list {
+            text-align: left;
+            display: inline-block;
+            margin: 30px 0;
+        }
+
+        .feature-list li {
+            font-size: 20px;
+            margin: 18px 0;
+            list-style: none;
+            animation: slideInRight 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .feature-list li:nth-child(1) { animation-delay: 0.1s; }
+        .feature-list li:nth-child(2) { animation-delay: 0.2s; }
+        .feature-list li:nth-child(3) { animation-delay: 0.3s; }
+        .feature-list li:nth-child(4) { animation-delay: 0.4s; }
+        .feature-list li:nth-child(5) { animation-delay: 0.5s; }
+        .feature-list li:nth-child(6) { animation-delay: 0.6s; }
+        .feature-list li:nth-child(7) { animation-delay: 0.7s; }
+        .feature-list li:nth-child(8) { animation-delay: 0.8s; }
+
+        .feature-list li:before {
+            content: "▸ ";
+            color: #fff;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 24px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 14px 35px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: white;
+            color: #667eea;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            margin: 40px 0;
+            max-width: 900px;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 35px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            animation: scaleIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .tech-item:nth-child(1) { animation-delay: 0.1s; }
+        .tech-item:nth-child(2) { animation-delay: 0.2s; }
+        .tech-item:nth-child(3) { animation-delay: 0.3s; }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .tech-item h4 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .tech-item p {
+            font-size: 16px;
+        }
+
+        .demo-box {
+            background: white;
+            color: #333;
+            padding: 50px;
+            border-radius: 15px;
+            margin: 30px 0;
+            max-width: 700px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        .demo-quote {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .demo-author {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .demo-btn {
+            background: #00BCD4;
+            color: white;
+            padding: 12px 40px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+        }
+
+        .file-structure {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            font-size: 16px;
+            max-width: 500px;
+            border-left: 4px solid #00BCD4;
+            line-height: 2;
+            animation: slideInLeft 0.7s ease-out;
+        }
+
+        .container-title {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .container-title h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .container-title p {
+            font-size: 16px;
+        }
+
+        .js-functions {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            font-size: 14px;
+            max-width: 900px;
+            border-left: 4px solid #FFD700;
+            line-height: 1.6;
+            color: #e0e0e0;
+            animation: slideInLeft 0.7s ease-out;
+        }
+
+        .slide-7 .demo-box {
+            background: white;
+            color: #333;
+        }
+
+        .slide-7 .demo-btn {
+            background: #00BCD4;
+            color: white;
+        }
+
+        .conclusion-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            max-width: 750px;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .conclusion-box p {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+
+        /* Slide 9 */
+        .slide-9 h2 {
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .feature-demo {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            max-width: 800px;
+            animation: scaleIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .feature-demo:nth-child(2) { animation-delay: 0.2s; }
+        .feature-demo:nth-child(3) { animation-delay: 0.4s; }
+        .feature-demo:nth-child(4) { animation-delay: 0.6s; }
+
+        .feature-demo h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .feature-demo p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Slide 10 - Thank You */
+        .thank-you-title {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            animation: bounceIn 1s ease-out;
+        }
+
+        .thank-you-subtitle {
+            font-size: 32px;
+            margin-bottom: 60px;
+            animation: slideInUp 0.8s ease-out 0.3s both;
+            opacity: 0.9;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .creator-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 50px 80px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            max-width: 700px;
+            animation: slideInUp 0.8s ease-out 0.5s both;
+        }
+
+        .creator-info p {
+            font-size: 22px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .creator-info .name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 25px;
+        }
+
+        .divider {
+            width: 100px;
+            height: 3px;
+            background: #FFD700;
+            margin: 25px auto;
+            border-radius: 2px;
+        }
+
+        .creator-info .group {
+            color: #87CEEB;
+        }
+
+        .creator-info .teacher {
+            color: #90EE90;
+        }
+
+        .final-message {
+            margin-top: 40px;
+            font-size: 18px;
+            font-style: italic;
+            opacity: 0.8;
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .emoji {
+            font-size: 30px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1 -->
+        <div class="slide slide-1 active">
+            <h1>Quote Generator</h1>
+            <p class="subtitle">Web Application Project</p>
+            <div class="info-card">
+                <p><strong>Made by:</strong> Allonbaev Azimjon</p>
+                <p><strong>Group:</strong> SCA-24B</p>
+                <p><strong>Teacher:</strong> Kubanych agai</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide slide-2">
+            <h2>О Проекте</h2>
+            <div class="container-title">
+                <h3>Генератор Цитат</h3>
+                <p>Интерактивное веб-приложение, которое отображает случайные вдохновляющие цитаты от известных личностей</p>
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.15); padding: 30px; border-radius: 12px; max-width: 800px;">
+                <p><strong>🎯 Цель:</strong> Создать красивое и функциональное приложение с минималистичным дизайном</p>
+                <p><strong>💻 Технологии:</strong> HTML5, CSS3, JavaScript ES6</p>
+                <p><strong>🎨 Дизайн:</strong> Figma Design System с современным интерфейсом</p>
+                <p><strong>📦 Структура:</strong> Отдельные файлы для HTML, CSS и JavaScript</p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide slide-3">
+            <h2>Основные Функции</h2>
+            <ul class="feature-list">
+                <li>Случайный выбор из 10+ вдохновляющих цитат</li>
+                <li>Красивый минималистичный дизайн с темным фоном</li>
+                <li>Полностью отзывчивый интерфейс (Responsive Design)</li>
+                <li>Плавные анимации и переходы</li>
+                <li>Кнопка для получения новой цитаты</li>
+                <li>Отображение автора каждой цитаты</li>
+                <li>Быстрая загрузка и оптимизация производительности</li>
+                <li>Современный пользовательский интерфейс</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide slide-4">
+            <h2>Технологии и Инструменты</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>HTML5</h4>
+                    <p>Семантическая разметка и структура приложения</p>
+                </div>
+                <div class="tech-item">
+                    <h4>CSS3</h4>
+                    <p>Стили, анимации и адаптивный дизайн</p>
+                </div>
+                <div class="tech-item">
+                    <h4>JavaScript</h4>
+                    <p>Интерактивность и логика приложения</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide slide-5">
+            <h2>Структура Проекта</h2>
+            <div class="file-structure">
+📁 quote-generator/<br>
+├─ 📄 index.html<br>
+├─ 📄 styles.css<br>
+└─ 📄 script.js
+            </div>
+            <p style="margin-top: 30px; max-width: 700px;">Трёхслойная архитектура с разделением ответственности. Каждый файл отвечает за свою область функциональности: HTML - разметка, CSS - внешний вид, JavaScript - поведение.</p>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide slide-6">
+            <h2>Ключевой Код: HTML и CSS</h2>
+            <div class="code-block">
+<strong>&lt;div class=<span style="color: #FF6B6B">"container"</span>&gt;</strong><br>
+&nbsp;&nbsp;&lt;div class=<span style="color: #FF6B6B">"header"</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class=<span style="color: #FF6B6B">"icon-btn"</span>&gt;→&lt;/button&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class=<span style="color: #FF6B6B">"quote-card"</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=<span style="color: #FF6B6B">"quote-text"</span> id=<span style="color: #FF6B6B">"quoteText"</span>&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=<span style="color: #FF6B6B">"quote-author"</span>&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class=<span style="color: #FF6B6B">"btn-new"</span>&gt;New&lt;/button&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/div&gt;
+            </div>
+            <p style="font-size: 16px; max-width: 800px;">CSS использует Flexbox для центрирования, переходы для плавных эффектов и переменные цветов для согласованности дизайна</p>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide slide-7">
+            <h2>JavaScript: Логика Приложения</h2>
+            <div class="js-functions">
+<strong style="color: #FFD700;">const quotes = [</strong><br>
+&nbsp;&nbsp;{ text: <span style="color: #90EE90">"We have two ears..."</span>, author: <span style="color: #90EE90">"Epictetus"</span> },<br>
+&nbsp;&nbsp;{ text: <span style="color: #90EE90">"The only way to do great work..."</span>, author: <span style="color: #90EE90">"Steve Jobs"</span> }<br>
+<strong style="color: #FFD700;">];</strong><br><br>
+<strong style="color: #FFD700;">function getRandomQuote()</strong> {<br>
+&nbsp;&nbsp;const randomIndex = Math.<strong>floor</strong>(Math.<strong>random</strong>() * quotes.<strong>length</strong>);<br>
+&nbsp;&nbsp;<strong>return</strong> quotes[randomIndex];<br>
+}<br><br>
+<strong style="color: #FFD700;">newBtn.addEventListener</strong>(<span style="color: #90EE90">'click'</span>, () => {<br>
+&nbsp;&nbsp;const quote = <strong>getRandomQuote</strong>();<br>
+&nbsp;&nbsp;<strong>displayQuote</strong>(quote);<br>
+});
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide slide-8">
+            <h2>CSS Стили и Анимации</h2>
+            <div class="code-block">
+<strong style="color: #FFD700;">.quote-card {</strong><br>
+&nbsp;&nbsp;background: white;<br>
+&nbsp;&nbsp;border-radius: 12px;<br>
+&nbsp;&nbsp;padding: 48px 56px;<br>
+&nbsp;&nbsp;box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);<br>
+&nbsp;&nbsp;animation: slideInFade 0.6s ease-out;<br>
+<strong style="color: #FFD700;">}</strong><br><br>
+<strong style="color: #FFD700;">@keyframes slideInFade {</strong><br>
+&nbsp;&nbsp;<strong style="color: #FFD700;">from</strong> { opacity: 0; transform: translateY(30px); }<br>
+&nbsp;&nbsp;<strong style="color: #FFD700;">to</strong> { opacity: 1; transform: translateY(0); }<br>
+<strong style="color: #FFD700;">}</strong>
+            </div>
+            <p style="font-size: 16px;">Использование CSS анимаций для плавного входа элементов и создания интересивного пользовательского опыта</p>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide slide-9">
+            <h2>Примеры Реализованных Функций</h2>
+            <div class="feature-demo">
+                <h4>⚡ Интерактивная Кнопка</h4>
+                <p>При нажатии на кнопку "New" загружается случайная цитата с плавной анимацией</p>
+            </div>
+            <div class="feature-demo">
+                <h4>🎨 Красивый Дизайн</h4>
+                <p>Темный фон с белой карточкой создает контрастный и приятный глазу интерфейс</p>
+            </div>
+            <div class="feature-demo">
+                <h4>📱 Адаптивность</h4>
+                <p>Приложение идеально работает на мобильных устройствах и десктопе</p>
+            </div>
+            <div class="feature-demo">
+                <h4>🚀 Производительность</h4>
+                <p>Быстрая загрузка и минимальное потребление ресурсов браузера</p>
+            </div>
+        </div>
+
+        <!-- Slide 10 - Thank You -->
+        <div class="slide slide-10">
+            <div class="thank-you-title"><span class="emoji">✨</span>Спасибо за Внимание<span class="emoji">✨</span></div>
+            <div class="thank-you-subtitle">Проект успешно завершен!</div>
+            
+            <div class="creator-info">
+                <div class="name">Allonbaev Azimjon</div>
+                <div class="divider"></div>
+                <p class="group">📚 Группа: SCA-24B</p>
+                <p class="teacher">👨‍🏫 Преподаватель: Kubanych agai</p>
+                <div class="divider"></div>
+                <div class="final-message">
+                    "Спасибо за внимание к нашему проекту! Надеемся, что вам понравилось знакомство с Quote Generator 🌟"
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current">1</span> / <span id="total">10</span>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevSlide()">← Назад</button>
+        <button onclick="nextSlide()">Вперед →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Навигация с клавиатуры
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
