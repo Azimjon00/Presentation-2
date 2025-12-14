@@ -151,6 +151,69 @@
             animation: fadeIn 1s ease-out 0.3s both;
         }
 
+
+
+
+
+        /* === SLIDE 9 : QR + LOGO === */
+
+.slide-9 {
+    position: relative;
+}
+
+/* Логотип университета */
+.slide-9 .uni-logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.slide-9 .uni-logo img {
+    width: 90px;
+    height: auto;
+}
+
+/* Контейнер QR */
+.qr-wrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+/* Один QR */
+.qr-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    animation: scaleIn 0.6s ease-out;
+}
+
+/* Анимация по очереди */
+.qr-item:nth-child(1) { animation-delay: 0.2s; }
+.qr-item:nth-child(2) { animation-delay: 0.4s; }
+.qr-item:nth-child(3) { animation-delay: 0.6s; }
+
+.qr-item img {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background: white;
+    padding: 8px;
+}
+
+/* Подпись */
+.qr-item span {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.95;
+}
+
         /* Slide 2 */
         .slide-2 {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -578,9 +641,28 @@
             font-size: 30px;
             margin: 0 5px;
         }
+        /* === GLOBAL LOGO (ALL SLIDES) === */
+
+.global-logo {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 2000;
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.global-logo img {
+    width: 90px;
+    height: auto;
+}
+
     </style>
 </head>
 <body>
+    <div class="global-logo">
+        <img src="logo.png" alt="University Logo">
+    </div>
+    
     <div class="presentation-container">
         <!-- Slide 1 -->
         <div class="slide slide-1 active">
@@ -712,24 +794,47 @@
 
         <!-- Slide 9 -->
         <div class="slide slide-9">
+
             <h2>Примеры Реализованных Функций</h2>
+        
             <div class="feature-demo">
                 <h4>⚡ Интерактивная Кнопка</h4>
-                <p>При нажатии на кнопку "New" загружается случайная цитата с плавной анимацией</p>
+                <p>При нажатии...</p>
             </div>
+        
             <div class="feature-demo">
                 <h4>🎨 Красивый Дизайн</h4>
-                <p>Темный фон с белой карточкой создает контрастный и приятный глазу интерфейс</p>
+                <p>Темный фон...</p>
             </div>
+        
             <div class="feature-demo">
                 <h4>📱 Адаптивность</h4>
-                <p>Приложение идеально работает на мобильных устройствах и десктопе</p>
+                <p>Приложение...</p>
             </div>
+        
             <div class="feature-demo">
                 <h4>🚀 Производительность</h4>
-                <p>Быстрая загрузка и минимальное потребление ресурсов браузера</p>
+                <p>Быстрая загрузка...</p>
             </div>
+        
+            <!-- QR В КОНЦЕ -->
+            <div class="qr-wrapper">
+                <div class="qr-item">
+                    <img src="qr1.png">
+                    <span>Figma QR</span>
+                </div>
+                <div class="qr-item">
+                    <img src="qr2.png">
+                    <span>GitHub Page QR</span>
+                </div>
+                <div class="qr-item">
+                    <img src="qr3.png">
+                    <span>GitHub Repository QR</span>
+                </div>
+            </div>
+        
         </div>
+        
 
         <!-- Slide 10 - Thank You -->
         <div class="slide slide-10">
